@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - run: |
-          cp -r PEC2/scripts/_build/html/ ./public
+          cp -r PEC2/scripts/_build/html/* public/
 
       - uses: peaceiris/actions-gh-pages@v3
         with:

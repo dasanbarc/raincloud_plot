@@ -1,26 +1,21 @@
-name: Deploy static site
+name: Deploy raincloud plot
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-      - name: Copy built HTML to deployment folder
-        run: |
-          mkdir public
-          cp -r PEC2/scripts/_build/html/* public/
+      - run: |
+          cp -r PEC2/scripts/_build/html/ ./public
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+      - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          publish_branch: gh-pages
+          enable_jekyll: false
